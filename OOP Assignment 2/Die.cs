@@ -8,5 +8,13 @@ namespace OOP_Assignment_2
 {
     internal class Die
     {
+
+        //methods
+        public int Roll()
+        {
+            //give a random number 
+
+            return -1;
+        }
     }
 }

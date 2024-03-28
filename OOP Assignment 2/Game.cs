@@ -10,7 +10,26 @@ namespace OOP_Assignment_2
     {
         static void Main(string[] args)
         {
+            //call start
 
         }
+
+        public int Start() 
+        {
+            //choose option between 1-4 
+
+
+            // go to appropriate class or method depending on choice
+
+
+            return -1;
+        }
+
+        public void Restart()
+        {
+            //Reset any globals, update statistics and 
+        }
+
+
     }
 }
