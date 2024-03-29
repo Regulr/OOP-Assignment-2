@@ -25,17 +25,6 @@ namespace OOP_Assignment_2
 
         }
 
-        //check if low score and update the low score if it is the case
-        public void addHighScore3PlusGame(int score)
-        {
-
-        }
-
-        public void addLowScore3PlusGame(int score)
-        {
-
-        }
-
         //add methods for any other stats 
     }
 }

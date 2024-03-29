@@ -8,13 +8,18 @@ namespace OOP_Assignment_2
 {
     internal class Die
     {
+        private int _dieValue;
+        public int DieValue
+        {
+            get => _dieValue; set => _dieValue = value;
+        }
 
         //methods
-        public int Roll()
+        public void Roll()
         {
             //give a random number 
-
-            return -1;
+            Random random = new Random();
+            DieValue = random.Next(1, 7);
         }
     }
 }
