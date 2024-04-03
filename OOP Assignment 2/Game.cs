@@ -75,9 +75,24 @@ namespace OOP_Assignment_2
 
         }
 
-        public void Restart()
+        public void Restart(int num)
         {
             //Reset any globals, update statistics and 
+            if (num == 0)
+            {
+                SevensOut sevensOut = new SevensOut();
+                sevensOut.SevensOutScoreP1 = 0;
+                sevensOut.SevensOutScoreP2 = 0;
+                Start();
+            }
+            else
+            {
+                ThreeOrMore threeOrMore = new ThreeOrMore();
+                threeOrMore.ThreeOrMoreScoreP1 = 0;
+                threeOrMore.ThreeOrMoreScoreP2 = 0;
+                Start();
+            }
+
         }
 
 

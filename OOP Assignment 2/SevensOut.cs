@@ -111,12 +111,12 @@ namespace OOP_Assignment_2
             //switching which players turn it is 
             if (player == 1) 
             {
-                player = 2;
+                player = player + 1;
             }
             else
             {
-                player = 1;
-                if(Round > 1)
+                player = player - 1;
+                if (Round > 1)
                 {
                     Round--;
                 }
@@ -134,11 +134,11 @@ namespace OOP_Assignment_2
         {
             if (SevensOutScoreP1 > SevensOutScoreP2)
             {
-                Console.WriteLine("Player 1 Wins With " + SevensOutScoreP1 + "Points!");
+                Console.WriteLine("Player 1 Wins With " + SevensOutScoreP1 + " Points!");
             }
             else if (SevensOutScoreP1 < SevensOutScoreP2)
             {
-                Console.WriteLine("Player 2 Wins With " + SevensOutScoreP2 + "Points!");
+                Console.WriteLine("Player 2 Wins With " + SevensOutScoreP2 + " Points!");
             }
             else
             {
@@ -176,7 +176,7 @@ namespace OOP_Assignment_2
             if (inp == "m")
             {
                 Game game = new Game();
-                game.Restart();
+                game.Restart(0);
             }
             else if(inp == "r")
             {
