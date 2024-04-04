@@ -19,6 +19,7 @@ namespace OOP_Assignment_2
             Console.WriteLine("Player Ones Turn: ");
             Turn(player);
         }
+
         public void Turn(int player)
         {
             Console.WriteLine("Press p to take your turn: ");
@@ -162,11 +163,13 @@ namespace OOP_Assignment_2
 
         public void SwitchPlayer(int player)
         {
+            Statistics statistics = new Statistics();
             //change the current player
             if(player == 1)
             {
                 if (ThreeOrMoreScoreP1 >= 20)
                 {
+                    statistics.Player1WinCountTOM();
                     Winner("One");
                 }
                 Console.WriteLine("Player Twos Turn: ");
@@ -177,6 +180,7 @@ namespace OOP_Assignment_2
             {
                 if (ThreeOrMoreScoreP2 >= 20)
                 {
+                    statistics.Player1WinCountTOM();
                     Winner("Two");
                 }
                 Console.WriteLine("Player Ones Turn: ");

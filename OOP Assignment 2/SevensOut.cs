@@ -56,10 +56,13 @@ namespace OOP_Assignment_2
                 SevensOutGame();
             }
         }
+
         public void Turn(int player)
         {
             //anything relating to the players turn
+            int count = 0;
             Die die = new Die();
+            Statistics statistics = new Statistics();
             int die1 = 0;
             int die2 = 0;
             while (die1 + die2 != 7)
@@ -67,6 +70,7 @@ namespace OOP_Assignment_2
                 Console.WriteLine("Press r to roll the dice");
                 if (Console.ReadLine() == "r")
                 {
+                    count++;
                     die.Roll();
                     die1 = die.DieValue;
                     Console.WriteLine(die1);
@@ -89,12 +93,16 @@ namespace OOP_Assignment_2
                     {
                         if (player == 1)
                         {
+                            SevensOutScoreP1 = SevensOutScoreP1 + score;
                             Console.WriteLine("Your Current Score is " + SevensOutScoreP1);
                         }
                         else
                         {
+                            SevensOutScoreP2 = SevensOutScoreP2 + score;
                             Console.WriteLine("Your Current Score is " + SevensOutScoreP2);
                         }
+                        statistics.ShortestStreakSO(count);
+                        statistics.LongestStreakSO(count);
                         SwitchPLayer(player);
                     }
                 }
@@ -132,21 +140,31 @@ namespace OOP_Assignment_2
 
         public void Winner()
         {
+            Statistics statistics = new Statistics();
             if (SevensOutScoreP1 > SevensOutScoreP2)
             {
+                statistics.HighScore7Game(SevensOutScoreP1);
+                statistics.LowScore7Game(SevensOutScoreP2);
+                statistics.Player1WinCountSO();
                 Console.WriteLine("Player 1 Wins With " + SevensOutScoreP1 + " Points!");
             }
             else if (SevensOutScoreP1 < SevensOutScoreP2)
             {
+                statistics.HighScore7Game(SevensOutScoreP2);
+                statistics.LowScore7Game(SevensOutScoreP1);
+                statistics.Player2WinCountSO();
                 Console.WriteLine("Player 2 Wins With " + SevensOutScoreP2 + " Points!");
             }
             else
             {
+                statistics.HighScore7Game(SevensOutScoreP1);
+                statistics.LowScore7Game(SevensOutScoreP1);
                 Console.WriteLine("Its a Draw!");
             }
 
             EndGame();
         }
+
         public void EndGame()
         {
             Console.WriteLine("Press m to go to the main menu or r to play this game again");
