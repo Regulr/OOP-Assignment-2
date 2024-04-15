@@ -11,6 +11,7 @@ namespace OOP_Assignment_2
         public int SevensOutScoreP1;
         public int SevensOutScoreP2;
         public int Round;
+        public bool AI = false;
 
         //methods
         public void SevensOutGame()
@@ -135,7 +136,14 @@ namespace OOP_Assignment_2
             }
 
             Console.WriteLine("Current Player: Player " + player);
-            Turn(player);
+            if(AI == false)
+            {
+                Turn(player);
+            }
+            else
+            {
+                AITurn(player);
+            }
         }
 
         public void Winner()
@@ -206,6 +214,52 @@ namespace OOP_Assignment_2
             {
                 Console.WriteLine("Please Input a Valid Option");
                 EndGame();
+            }
+        }
+
+        public void AITurn(int player)
+        {
+            //anything relating to the players turn
+            int count = 0;
+            Die die = new Die();
+            Statistics statistics = new Statistics();
+            int die1 = 0;
+            int die2 = 0;
+            while (die1 + die2 != 7)
+            {               
+                count++;
+                die.Roll();
+                die1 = die.DieValue;
+                Console.WriteLine(die1);
+                die.Roll();
+                die2 = die.DieValue;
+                Console.WriteLine(die2);
+                int score = die1 + die2;
+                if (score != 7)
+                {
+                    if (player == 1)
+                    {
+                        SevensOutScoreP1 = SevensOutScoreP1 + score;
+                    }
+                    else
+                    {
+                        SevensOutScoreP2 = SevensOutScoreP2 + score;
+                    }
+                }
+                else
+                {
+                    if (player == 1)
+                    {
+                        SevensOutScoreP1 = SevensOutScoreP1 + score;
+                        Console.WriteLine("Your Current Score is " + SevensOutScoreP1);
+                    }
+                    else
+                    {
+                        SevensOutScoreP2 = SevensOutScoreP2 + score;
+                        Console.WriteLine("Your Current Score is " + SevensOutScoreP2);
+                    }
+                    SwitchPLayer(player);
+                }                   
             }
         }
     }

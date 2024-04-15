@@ -12,12 +12,15 @@ namespace OOP_Assignment_2
         static void Main(string[] args)
         {
             //call Start Mehtod
+            string SevensOutTextPath = Path.Combine(Directory.GetCurrentDirectory(), "SevensOutStats.txt");
+            string ThreeOrMoreTextPath = Path.Combine(Directory.GetCurrentDirectory(), "ThreeOrMoreStats.txt");
             Game game = new Game();
             game.Start();
         }
 
         public void Start() 
         {
+            FillTextFiles();
             //choose option between 1-4 
             Console.WriteLine("Please Choose An Option Between 1-4:");
             Console.WriteLine("1: Sevens Out Game");
@@ -95,6 +98,20 @@ namespace OOP_Assignment_2
 
         }
 
-
+        public void FillTextFiles() 
+        {
+            string SevensOutTextPath = Path.Combine(Directory.GetCurrentDirectory(), "SevensOutStats.txt");
+            string ThreeOrMoreTextPath = Path.Combine(Directory.GetCurrentDirectory(), "ThreeOrMoreStats.txt");
+            if (!File.Exists(SevensOutTextPath)) 
+            {
+                string[] arr = ["0", "999", "0", "0", "0", "999"];
+                File.WriteAllLines(SevensOutTextPath, arr);
+            }
+            if (!File.Exists(ThreeOrMoreTextPath))
+            {
+                string[] arr = ["0", "0"];
+                File.WriteAllLines(ThreeOrMoreTextPath, arr);
+            }
+        }
     }
 }
