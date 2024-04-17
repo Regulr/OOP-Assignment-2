@@ -16,6 +16,50 @@ namespace OOP_Assignment_2
         //methods
         public void SevensOutGame()
         {
+            Console.WriteLine("How many players?: ");
+            Console.WriteLine("1. One Player");
+            Console.WriteLine("2. Two Players");
+
+            String choice = "";
+            try
+            {
+                choice = Console.ReadLine();
+            }
+            catch (IOException)
+            {
+                Console.WriteLine("Please Input A Valid Option");
+                SevensOutGame();
+            }
+            catch (OutOfMemoryException)
+            {
+                Console.WriteLine("Please Input A Valid Option");
+                SevensOutGame();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("Please Input A Valid Option");
+                SevensOutGame();
+            }
+
+            if (Int32.TryParse(choice, out int i) && i == 1)
+            {
+                AI = true;
+                RoundAmount();
+            }
+            else if(Int32.TryParse(choice, out int j) && j == 2)
+            {
+                AI = false;               
+                RoundAmount();
+            }
+            else
+            {
+                Console.WriteLine("Please Input A Valid Option");
+                SevensOutGame();
+            }
+        }
+
+        public void RoundAmount() 
+        {
             //initialise the game
             Console.WriteLine("Please Choose How Many Rounds You Would Like To Play: ");
             Console.WriteLine("1");
@@ -46,7 +90,7 @@ namespace OOP_Assignment_2
                 SevensOutGame();
             }
 
-            if (Int32.TryParse(choice, out int i) && i<=4 && i>0)
+            if (Int32.TryParse(choice, out int i) && i <= 4 && i > 0)
             {
                 Round = i;
                 Turn(player);
@@ -152,13 +196,19 @@ namespace OOP_Assignment_2
             if (SevensOutScoreP1 > SevensOutScoreP2)
             {
                 statistics.HighScore7Game(SevensOutScoreP1);
-                statistics.LowScore7Game(SevensOutScoreP2);
+                if(AI == false)
+                {
+                    statistics.LowScore7Game(SevensOutScoreP2);
+                }
                 statistics.Player1WinCountSO();
                 Console.WriteLine("Player 1 Wins With " + SevensOutScoreP1 + " Points!");
             }
             else if (SevensOutScoreP1 < SevensOutScoreP2)
             {
-                statistics.HighScore7Game(SevensOutScoreP2);
+                if (AI == false)
+                {
+                    statistics.LowScore7Game(SevensOutScoreP2);
+                }
                 statistics.LowScore7Game(SevensOutScoreP1);
                 statistics.Player2WinCountSO();
                 Console.WriteLine("Player 2 Wins With " + SevensOutScoreP2 + " Points!");
