@@ -12,7 +12,7 @@ namespace OOP_Assignment_2
         string SevensOutTextPath = Path.Combine(Directory.GetCurrentDirectory(), "SevensOutStats.txt");
         string ThreeOrMoreTextPath = Path.Combine(Directory.GetCurrentDirectory(), "ThreeOrMoreStats.txt");
         //methods
-        public void viewStats()
+        public void ViewStats()
         {
             string[] arr = File.ReadAllLines(SevensOutTextPath);
             string[] arr2 = File.ReadAllLines(ThreeOrMoreTextPath);
@@ -33,10 +33,10 @@ namespace OOP_Assignment_2
             Console.WriteLine(" ");
             Console.WriteLine("Player 1 Wins:   " + arr2[0]);
             Console.WriteLine("Player 2 Wins:   " + arr2[1]);
-            returnMenu();
+            ReturnMenu();
         }
 
-        public void returnMenu()
+        public void ReturnMenu()
         {
             Console.WriteLine(" ");
             Console.WriteLine("Press m to return to main menu");
@@ -49,7 +49,7 @@ namespace OOP_Assignment_2
             else
             {
                 Console.WriteLine("Please Enter a correct value");
-                returnMenu();
+                ReturnMenu();
             }
         }
         //check if high score and update the high score if it is the case

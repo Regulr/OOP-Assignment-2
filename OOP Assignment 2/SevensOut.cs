@@ -267,26 +267,33 @@ namespace OOP_Assignment_2
             }
         }
 
-        public void AITurn(int player)
+        public bool AITurn(int player)
         {
-            //anything relating to the players turn
             int count = 0;
             Die die = new Die();
             Statistics statistics = new Statistics();
             int die1 = 0;
             int die2 = 0;
             while (die1 + die2 != 7)
-            {               
-                count++;
-                die.Roll();
-                die1 = die.DieValue;
-                Console.WriteLine(die1);
-                die.Roll();
-                die2 = die.DieValue;
-                Console.WriteLine(die2);
-                int score = die1 + die2;
+            {
+                int score = 7;
+                if (Testing.testing == false)
+                {
+                    count++;
+                    die.Roll();
+                    die1 = die.DieValue;
+                    Console.WriteLine(die1);
+                    die.Roll();
+                    die2 = die.DieValue;
+                    Console.WriteLine(die2);
+                    score = die1 + die2;
+                }   
                 if (score != 7)
                 {
+                    if (Testing.testing == true)
+                    {
+                        return false;
+                    }
                     if (player == 1)
                     {
                         SevensOutScoreP1 = SevensOutScoreP1 + score;
@@ -298,6 +305,10 @@ namespace OOP_Assignment_2
                 }
                 else
                 {
+                    if(Testing.testing == true)
+                    {
+                        return true;
+                    }
                     if (player == 1)
                     {
                         SevensOutScoreP1 = SevensOutScoreP1 + score;
@@ -311,6 +322,7 @@ namespace OOP_Assignment_2
                     SwitchPLayer(player);
                 }                   
             }
+            return false;
         }
     }
 }

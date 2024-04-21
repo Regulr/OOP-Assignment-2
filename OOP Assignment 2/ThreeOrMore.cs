@@ -202,14 +202,23 @@ namespace OOP_Assignment_2
             }
         }
 
-        public void SwitchPlayer(int player)
+        public bool SwitchPlayer(int player)
         {
             Statistics statistics = new Statistics();
             //change the current player
             if(player == 1)
             {
+                if(Testing.testing == true)
+                {
+                    ThreeOrMoreScoreP1 = 20;
+                }
                 if (ThreeOrMoreScoreP1 >= 20)
                 {
+                    if (Testing.testing == true)
+                    {
+                        ThreeOrMoreScoreP1 = 0;
+                        return true;
+                    }
                     statistics.Player1WinCountTOM();
                     Winner("One");
                 }
@@ -238,6 +247,7 @@ namespace OOP_Assignment_2
                     AITurn(player);
                 }
             }
+            return false;
         }
 
         public void Winner(string num)

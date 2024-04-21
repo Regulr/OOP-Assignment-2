@@ -64,11 +64,12 @@ namespace OOP_Assignment_2
             else if (choice == "3")
             {
                 Statistics statistics = new Statistics();
-                statistics.viewStats();
+                statistics.ViewStats();
             }
             else if (choice == "4")
             {
                 Testing testing = new Testing();
+                testing.TestMethod();
             }
             else
             {
