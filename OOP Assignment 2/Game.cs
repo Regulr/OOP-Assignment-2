@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,7 @@ namespace OOP_Assignment_2
     {
         static void Main(string[] args)
         {
-            //call Start Mehtod
-            string SevensOutTextPath = Path.Combine(Directory.GetCurrentDirectory(), "SevensOutStats.txt");
-            string ThreeOrMoreTextPath = Path.Combine(Directory.GetCurrentDirectory(), "ThreeOrMoreStats.txt");
+            //start the game 
             Game game = new Game();
             game.Start();
         }
@@ -32,8 +31,9 @@ namespace OOP_Assignment_2
 
             try
             {
-                choice = Console.ReadLine();
+                choice = Console.ReadLine(); //accept user input
             }
+            //catch exceptions related to Console.ReadLine 
             catch(IOException)
             { 
                 Console.WriteLine("Please Input A Valid Option");
@@ -54,34 +54,34 @@ namespace OOP_Assignment_2
             if (choice == "1")
             {
                 SevensOut sevensOut = new SevensOut();
-                sevensOut.SevensOutGame();
+                sevensOut.SevensOutGame(); //start Sevens Out game 
             }
             else if (choice == "2")
             {
                 ThreeOrMore threeOrMore = new ThreeOrMore();
-                threeOrMore.ThreeOrMoreGame();
+                threeOrMore.ThreeOrMoreGame(); //Start Three Or More game 
             }
             else if (choice == "3")
             {
                 Statistics statistics = new Statistics();
-                statistics.ViewStats();
+                statistics.ViewStats(); //show statistics page 
             }
             else if (choice == "4")
             {
                 Testing testing = new Testing();
-                testing.TestMethod();
+                testing.TestMethod(); //run all tests 
             }
             else
             {
                 Console.WriteLine("Please Input A Valid Option");
-                Start();
+                Start(); //rerun the start method when invalid option inputted 
             }
 
         }
 
         public void Restart(int num)
         {
-            //Reset any globals, update statistics and 
+            //Completely Unnecessary as do not need to rest the variables but works so dont want to touch 
             if (num == 0)
             {
                 SevensOut sevensOut = new SevensOut();
@@ -101,16 +101,17 @@ namespace OOP_Assignment_2
 
         public void FillTextFiles() 
         {
-            string SevensOutTextPath = Path.Combine(Directory.GetCurrentDirectory(), "SevensOutStats.txt");
-            string ThreeOrMoreTextPath = Path.Combine(Directory.GetCurrentDirectory(), "ThreeOrMoreStats.txt");
+            string SevensOutTextPath = Path.Combine(Directory.GetCurrentDirectory(), "SevensOutStats.txt"); //get local path for SevensOutStats
+            string ThreeOrMoreTextPath = Path.Combine(Directory.GetCurrentDirectory(), "ThreeOrMoreStats.txt"); //get local path for ThreeOrMoreStats
+            //when either file does not exist write an array to it, creating the file in the process
             if (!File.Exists(SevensOutTextPath)) 
             {
-                string[] arr = ["0", "999", "0", "0", "0", "999"];
+                string[] arr = ["0", "999", "0", "0", "0", "999"]; //array to be written to the file 
                 File.WriteAllLines(SevensOutTextPath, arr);
             }
             if (!File.Exists(ThreeOrMoreTextPath))
             {
-                string[] arr = ["0", "0"];
+                string[] arr = ["0", "0"]; //array to be written to the file 
                 File.WriteAllLines(ThreeOrMoreTextPath, arr);
             }
         }

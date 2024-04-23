@@ -8,13 +8,15 @@ namespace OOP_Assignment_2
 {
     internal class Die
     {
-        private int _dieValue;
+        private int _dieValue; //holds the die value 
         public int DieValue
         {
             get => _dieValue; set => _dieValue = value;
         }
 
         //methods
+
+        //Get a random number between one and six then set that as the dievalue 
         public void Roll()
         {
             //give a random number 
