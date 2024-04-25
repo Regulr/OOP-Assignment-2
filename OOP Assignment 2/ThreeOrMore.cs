@@ -16,6 +16,7 @@ namespace OOP_Assignment_2
         //methods 
         public void ThreeOrMoreGame() 
         {
+            //display options 
             Console.WriteLine("How many players?: ");
             Console.WriteLine("1. One Player");
             Console.WriteLine("2. Two Players");
@@ -23,8 +24,9 @@ namespace OOP_Assignment_2
             String choice = "";
             try
             {
-                choice = Console.ReadLine();
+                choice = Console.ReadLine(); //accept user input 
             }
+            //catch exceptions related to Console.ReadLine
             catch (IOException)
             {
                 Console.WriteLine("Please Input A Valid Option");
@@ -40,11 +42,12 @@ namespace OOP_Assignment_2
                 Console.WriteLine("Please Input A Valid Option");
                 ThreeOrMoreGame();
             }
-
+            //if oneplayer then use AI player
             if (Int32.TryParse(choice, out int i) && i == 1)
             {
                 AI = true;
             }
+            //if two player disable AI player
             else if (Int32.TryParse(choice, out int j) && j == 2)
             {
                 AI = false;
@@ -52,7 +55,7 @@ namespace OOP_Assignment_2
             else
             {
                 Console.WriteLine("Please Input A Valid Option");
-                ThreeOrMoreGame();
+                ThreeOrMoreGame(); //recall method
             }
 
             //initialise the game 
@@ -65,27 +68,27 @@ namespace OOP_Assignment_2
         {
             Console.WriteLine("Press p to take your turn: ");
 
-            if (Console.ReadLine() == "p")
+            if (Console.ReadLine() == "p") //accept user input 
             {
                 //array of 5 values 
                 int[] dieValues = new int[5];
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 5; i++) //get 5 values to fill array 
                 {
-                    die.Roll();
+                    die.Roll(); //roll dice for random number 
                     Console.WriteLine(die.DieValue);
-                    dieValues[i] = die.DieValue;
+                    dieValues[i] = die.DieValue; //add number to array 
                 }
 
                 //check for any sets 
                 int count = 0;
-                for (int i = 0; i < dieValues.Length; i++)
+                for (int i = 0; i < dieValues.Length; i++) //look for 5 of a kind 
                 {
                     if (dieValues[0] == dieValues[i])
                     {
-                        count++;
+                        count++; //add to the count when numbers are the same 
                     }
                 }
-                if (count < 5)
+                if (count < 5) //if not all are the same look for 4 of a kind 
                 {
                     count = 0;
                     for (int i = 0; i < dieValues.Length; i++)
@@ -96,7 +99,7 @@ namespace OOP_Assignment_2
                         }
                     }
 
-                    if (count < 4)
+                    if (count < 4) //check for 3 of a kind 
                     {
                         count = 0;
                         for (int i = 0; i < dieValues.Length; i++)
@@ -107,7 +110,7 @@ namespace OOP_Assignment_2
                             }
                         }
 
-                        if (count < 3)
+                        if (count < 3) //check for a 2 ofa  kind 
                         {
                             count = 0;
                             for (int i = 0; i < dieValues.Length; i++)
@@ -125,41 +128,43 @@ namespace OOP_Assignment_2
                 //award points accordingly
                 if (player == 1)
                 {
-                    if (count == 5)
+                    if (count == 5) //when count is 5 
                     {
                         Console.WriteLine("You got a 5 of a kind!");
-                        ThreeOrMoreScoreP1 = ThreeOrMoreScoreP1 + 12;
+                        ThreeOrMoreScoreP1 = ThreeOrMoreScoreP1 + 12; //add 12 points to the score 
                         Console.WriteLine("Your current score is " + ThreeOrMoreScoreP1);
                         SwitchPlayer(player);
                     }
-                    else if (count == 4)
+                    else if (count == 4) //when count is 4
                     {
                         Console.WriteLine("You got a 4 of a kind!");
-                        ThreeOrMoreScoreP1 = ThreeOrMoreScoreP1 + 6;
+                        ThreeOrMoreScoreP1 = ThreeOrMoreScoreP1 + 6; //add 6 points to the score
                         Console.WriteLine("Your current score is " + ThreeOrMoreScoreP1);
                         SwitchPlayer(player);
                     }
-                    else if (count == 3)
+                    else if (count == 3) //when count is 3
                     {
                         Console.WriteLine("You got a 3 of a kind!");
-                        ThreeOrMoreScoreP1 = ThreeOrMoreScoreP1 + 3;
+                        ThreeOrMoreScoreP1 = ThreeOrMoreScoreP1 + 3; //add 3 points to the score 
                         Console.WriteLine("Your current score is " + ThreeOrMoreScoreP1);
                         SwitchPlayer(player);
                     }
-                    else if (count == 2)
+                    else if (count == 2) //when count is 2
                     {
+                        //player gets another go 
                         Console.WriteLine("You got a 2 of a kind!");
                         Console.WriteLine("Have another roll");
                         Turn(player);
                     }
-                    else
+                    else //when count is 1
                     {
+                        //no points switch player 
                         Console.WriteLine("Nothing!");
                         Console.WriteLine("Your current score is " + ThreeOrMoreScoreP1);
                         SwitchPlayer(player);
                     }
                 }
-                else
+                else //same stuff as player 1 but for player 2 
                 {
                     if (count == 5)
                     {
@@ -198,7 +203,7 @@ namespace OOP_Assignment_2
             }
             else
             {
-                Turn(player);
+                Turn(player); //when users input is not valid recall method 
             }
         }
 
@@ -210,20 +215,20 @@ namespace OOP_Assignment_2
             {
                 if(Testing.testing == true)
                 {
-                    ThreeOrMoreScoreP1 = 20;
+                    ThreeOrMoreScoreP1 = 20; //set the score to 20 for testing purposes 
                 }
-                if (ThreeOrMoreScoreP1 >= 20)
+                if (ThreeOrMoreScoreP1 >= 20) //when winning score reached 
                 {
                     if (Testing.testing == true)
                     {
                         ThreeOrMoreScoreP1 = 0;
-                        return true;
+                        return true; //passing the test 
                     }
-                    statistics.Player1WinCountTOM();
+                    statistics.Player1WinCountTOM(); //add to win count 
                     Winner("One");
                 }
                 Console.WriteLine("Player Twos Turn: ");
-                player = player +1;
+                player = player +1; //switch to player 2
                 Turn(player);
             }
             else
@@ -232,28 +237,28 @@ namespace OOP_Assignment_2
                 {
                     if(AI == false) 
                     {
-                        statistics.Player2WinCountTOM();
+                        statistics.Player2WinCountTOM(); //when no ai add to plaer2s win count 
                     }
                     Winner("Two");
                 }
                 Console.WriteLine("Player Ones Turn: ");
-                player = player -1;
+                player = player -1; //switch to player 1
                 if (AI == false)
                 {
-                    Turn(player);
+                    Turn(player); //player 2 is a human 
                 }
                 else 
                 { 
-                    AITurn(player);
+                    AITurn(player); //player 2 is not a human
                 }
             }
             return false;
         }
 
-        public void Winner(string num)
+        public void Winner(string player)
         {
-            Console.WriteLine("Player " + num + " Wins!");
-            EndGame();
+            Console.WriteLine("Player " + player + " Wins!"); 
+            EndGame(); //finish the game 
         }
 
         public void EndGame()
@@ -264,8 +269,9 @@ namespace OOP_Assignment_2
 
             try
             {
-                inp = Console.ReadLine();
+                inp = Console.ReadLine(); //accept user input 
             }
+            //catch exceptions related to Console.ReadLine
             catch (IOException)
             {
                 Console.WriteLine("Please Input A Valid Option");
@@ -281,12 +287,13 @@ namespace OOP_Assignment_2
                 Console.WriteLine("Please Input A Valid Option");
                 EndGame();
             }
-
+            //go back to main menu 
             if (inp == "m")
             {
                 Game game = new Game();
                 game.Restart(0);
             }
+            //restart the ThreeOrMore game 
             else if (inp == "r")
             {
                 ThreeOrMoreScoreP1 = 0;
@@ -296,10 +303,11 @@ namespace OOP_Assignment_2
             else
             {
                 Console.WriteLine("Please Input a Valid Option");
-                EndGame();
+                EndGame(); //recall method when user inputs incorrect value 
             }
         }
 
+        //same as normal turn but without user inputs 
         public void AITurn(int player)
         {
             //array of 5 values 

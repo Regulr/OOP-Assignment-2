@@ -17,11 +17,12 @@ namespace OOP_Assignment_2
         //methods
 
         //Get a random number between one and six then set that as the dievalue 
-        public void Roll()
+        public int Roll()
         {
             //give a random number 
             Random random = new Random();
             DieValue = random.Next(1, 7);
+            return DieValue;
         }
     }
 }
