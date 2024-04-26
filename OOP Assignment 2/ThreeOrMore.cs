@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Assignment_2
 {
-    internal class ThreeOrMore
+    internal class ThreeOrMore: Game
     {
         public int ThreeOrMoreScoreP1;
         public int ThreeOrMoreScoreP2;
@@ -290,8 +290,7 @@ namespace OOP_Assignment_2
             //go back to main menu 
             if (inp == "m")
             {
-                Game game = new Game();
-                game.Restart(0);
+                Restart(0);
             }
             //restart the ThreeOrMore game 
             else if (inp == "r")

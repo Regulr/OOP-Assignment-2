@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOP_Assignment_2
 {
-    internal class SevensOut
+    internal class SevensOut: Game
     {
         public int SevensOutScoreP1;
         public int SevensOutScoreP2;
@@ -263,8 +263,7 @@ namespace OOP_Assignment_2
             if (inp == "m")
             {
                 //go back to main menu 
-                Game game = new Game();
-                game.Restart(0);
+                Restart(0);
             }
             else if(inp == "r")
             {
